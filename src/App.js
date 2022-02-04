@@ -3,7 +3,7 @@ import { useState } from 'react';
 import Movie from './Movie';
 import MovieList from './MovieList';
 import MovieForm from './MovieForm';
-import userEvent from '@testing-library/user-event';
+
 
 function App() {
 
@@ -11,7 +11,7 @@ function App() {
   const [filteredMovies, setFilteredMovies] = useState([]);
   const [movieFormYearReleased, setMovieFormYearReleased] = useState([]);
   const [movieFormDirector, setMovieFormDirector] = useState([]);
-  const [movieTitle, setMovieTitle] = useState([]);
+  const [movieFormTitle, setMovieFormTitle] = useState([]);
   const [movieFormColor, setMovieFormColor] = useState([]);
 
   function submitMovie(e) {
@@ -19,7 +19,7 @@ function App() {
 
     const movie = {
       id: Math.floor(Math.random() * 1000),
-      title: movieTitle, 
+      title: movieFormTitle, 
       director: movieFormDirector, 
       year: movieFormYearReleased,
       color: movieFormColor
@@ -27,7 +27,7 @@ function App() {
 
     setAllMovies([...allMovies, movie]);
 
-    setMovieTitle('');
+    setMovieFormTitle('');
     setMovieFormDirector('');
     setMovieFormYearReleased('');
     setMovieFormColor('');
@@ -53,12 +53,30 @@ function App() {
 
   return (
     <div className="App">
-      <Movie />
 
-      <MovieList />
+      <MovieForm 
+        submitMovie={submitMovie}
+        movieFormTitle={movieFormTitle}
+        setMovieFormTitle={setMovieFormTitle}
+        movieFormDirector={movieFormDirector}
+        setMovieFormDirector={setMovieFormDirector}
+        movieFormYearReleased={movieFormYearReleased}
+        setMovieFormYearReleased={setMovieFormYearReleased}
+        movieFormColor={movieFormColor}
+        setMovieFormColor={setMovieFormColor}
+      />
 
-      <MovieForm />
-    
+      <MovieList 
+        movies={ filteredMovies.length ? filteredMovies : allMovies }
+        handleDeleteMovie={handleDeleteMovie} />
+
+      <Movie 
+        movie={{
+          title: movieFormTitle, 
+          director: movieFormDirector, 
+          year: movieFormYearReleased,
+          color: movieFormColor
+        }} />
     </div>
   );
 }
