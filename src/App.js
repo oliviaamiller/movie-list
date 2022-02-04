@@ -54,7 +54,7 @@ export default function App() {
   return (
     <div className="App">
       <p>Filter Movies</p>
-      <input onChange={(e) => handleFilterMovies(e.target.value)} />
+      <input placeholder='search' onChange={(e) => handleFilterMovies(e.target.value)} />
 
       <MovieForm 
         submitMovie={submitMovie}
