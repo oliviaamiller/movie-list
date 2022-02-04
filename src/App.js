@@ -31,7 +31,22 @@ function App() {
     setMovieFormDirector('');
     setMovieFormYearReleased('');
     setMovieFormColor('');
+  }
 
+  function handleDeleteMovie(id) {
+    
+    const index = allMovies.findIndex(movie => movie.id === id);
+
+    allMovies.splice(index, 1);
+    
+    setAllMovies([...allMovies]);
+  }
+
+  function handleFilterMovies(search) {
+
+    const filteredMovies = allMovies.filter(movie => movie.title.includes(search));
+
+    { search ? setFilteredMovies([...filteredMovies]) : setFilteredMovies([...allMovies]); }
   }
 
 
