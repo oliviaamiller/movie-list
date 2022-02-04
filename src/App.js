@@ -38,7 +38,8 @@ export default function App() {
     const index = allMovies.findIndex(movie => movie.id === id);
 
     allMovies.splice(index, 1);
-    
+
+    setFilteredMovies('');
     setAllMovies([...allMovies]);
   }
 
@@ -53,31 +54,37 @@ export default function App() {
 
   return (
     <div className="App">
-      <p>Filter Movies</p>
-      <input placeholder='search' onChange={(e) => handleFilterMovies(e.target.value)} />
+      <div className='left'>
+        <p>Add a Movie</p>
+        <Movie 
+          movie={{
+            title: movieFormTitle, 
+            director: movieFormDirector, 
+            year: movieFormYearReleased,
+            color: movieFormColor
+          }} />
+      
+        <MovieForm 
+          submitMovie={submitMovie}
+          movieFormTitle={movieFormTitle}
+          setMovieFormTitle={setMovieFormTitle}
+          movieFormDirector={movieFormDirector}
+          setMovieFormDirector={setMovieFormDirector}
+          movieFormYearReleased={movieFormYearReleased}
+          setMovieFormYearReleased={setMovieFormYearReleased}
+          movieFormColor={movieFormColor}
+          setMovieFormColor={setMovieFormColor} />
+      </div>
 
-      <MovieForm 
-        submitMovie={submitMovie}
-        movieFormTitle={movieFormTitle}
-        setMovieFormTitle={setMovieFormTitle}
-        movieFormDirector={movieFormDirector}
-        setMovieFormDirector={setMovieFormDirector}
-        movieFormYearReleased={movieFormYearReleased}
-        setMovieFormYearReleased={setMovieFormYearReleased}
-        movieFormColor={movieFormColor}
-        setMovieFormColor={setMovieFormColor} />
-
-      <MovieList 
-        movies={filteredMovies.length ? filteredMovies : allMovies}
-        handleDeleteMovie={handleDeleteMovie} /> 
-
-      <Movie 
-        movie={{
-          title: movieFormTitle, 
-          director: movieFormDirector, 
-          year: movieFormYearReleased,
-          color: movieFormColor
-        }} />
+      <div className='right'>
+        <p>Search Movies</p>
+        <input placeholder='search' onChange={(e) => handleFilterMovies(e.target.value)} />
+        <MovieList 
+          movies={filteredMovies.length ? filteredMovies : allMovies}
+          handleDeleteMovie={handleDeleteMovie} /> 
+      </div>
+      
+    
     </div>
   );
 }

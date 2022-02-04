@@ -1,9 +1,42 @@
-.App {
-  text-align: center;
+.left {
+  position: fixed;
+  left: 0;
+  margin: 6rem;
 }
+
+.right {
+  position: fixed;
+  right: 0;
+  margin: 6rem;
+}
+
+.App p {
+  text-transform: uppercase;
+  text-align: center;
+  font-weight: bold;
+  color: pink;
+}
+
 
 .movie-form {
   display: flex;
   flex-direction: column;
   align-items: center;
+ 
+}
+
+.movie-list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+}
+
+.movie {
+  border: black 1px solid;
+  margin-bottom: 1rem;
+  text-align: center;
+  height: 8rem;
+  padding: 2rem;
+
 }
