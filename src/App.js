@@ -1,5 +1,5 @@
 import './App.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Movie from './Movie';
 import MovieList from './MovieList';
 import MovieForm from './MovieForm';
@@ -8,11 +8,18 @@ import MovieForm from './MovieForm';
 export default function App() {
 
   const [allMovies, setAllMovies] = useState([]);
+  const [filtering, setFiltering] = useState('');
   const [filteredMovies, setFilteredMovies] = useState([]);
   const [movieFormYearReleased, setMovieFormYearReleased] = useState('');
   const [movieFormDirector, setMovieFormDirector] = useState('');
   const [movieFormTitle, setMovieFormTitle] = useState('');
   const [movieFormColor, setMovieFormColor] = useState('');
+
+  useEffect(() => {
+    const filteredMovies = allMovies.filter(movie => movie.title.includes(filtering));
+
+    setFilteredMovies(filteredMovies);
+  }, [filtering, allMovies]);
 
   function submitMovie(e) {
     e.preventDefault();
@@ -43,14 +50,6 @@ export default function App() {
     setAllMovies([...allMovies]);
   }
 
-  function handleFilterMovies(search) {
-
-    const filteredMovies = allMovies.filter(movie => movie.title.includes(search));
-
-    { search ? setFilteredMovies([...filteredMovies]) : setFilteredMovies([...allMovies]); }
-  }
-
-
 
   return (
     <div className="App">
@@ -78,7 +77,12 @@ export default function App() {
 
       <div className='right'>
         <p>Search Movies</p>
-        <input placeholder='search' onChange={(e) => handleFilterMovies(e.target.value)} />
+
+        <input 
+          placeholder='search by title' 
+          value={filtering} 
+          onChange={(e) => setFiltering(e.target.value)} />
+          
         <MovieList 
           movies={filteredMovies.length ? filteredMovies : allMovies}
           handleDeleteMovie={handleDeleteMovie} /> 
