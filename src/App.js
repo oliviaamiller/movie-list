@@ -5,14 +5,14 @@ import MovieList from './MovieList';
 import MovieForm from './MovieForm';
 
 
-function App() {
+export default function App() {
 
   const [allMovies, setAllMovies] = useState([]);
   const [filteredMovies, setFilteredMovies] = useState([]);
-  const [movieFormYearReleased, setMovieFormYearReleased] = useState([]);
-  const [movieFormDirector, setMovieFormDirector] = useState([]);
-  const [movieFormTitle, setMovieFormTitle] = useState([]);
-  const [movieFormColor, setMovieFormColor] = useState([]);
+  const [movieFormYearReleased, setMovieFormYearReleased] = useState('');
+  const [movieFormDirector, setMovieFormDirector] = useState('');
+  const [movieFormTitle, setMovieFormTitle] = useState('');
+  const [movieFormColor, setMovieFormColor] = useState('');
 
   function submitMovie(e) {
     e.preventDefault();
@@ -53,6 +53,8 @@ function App() {
 
   return (
     <div className="App">
+      <p>Filter Movies</p>
+      <input onChange={(e) => handleFilterMovies(e.target.value)} />
 
       <MovieForm 
         submitMovie={submitMovie}
@@ -63,12 +65,11 @@ function App() {
         movieFormYearReleased={movieFormYearReleased}
         setMovieFormYearReleased={setMovieFormYearReleased}
         movieFormColor={movieFormColor}
-        setMovieFormColor={setMovieFormColor}
-      />
+        setMovieFormColor={setMovieFormColor} />
 
       <MovieList 
-        movies={ filteredMovies.length ? filteredMovies : allMovies }
-        handleDeleteMovie={handleDeleteMovie} />
+        movies={filteredMovies.length ? filteredMovies : allMovies}
+        handleDeleteMovie={handleDeleteMovie} /> 
 
       <Movie 
         movie={{
@@ -80,5 +81,3 @@ function App() {
     </div>
   );
 }
-
-export default App;
