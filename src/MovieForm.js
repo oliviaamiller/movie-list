@@ -16,6 +16,7 @@ export default function MovieForm({ submitMovie,
       <input placeholder='director' required value={movieFormDirector} onChange={(e) => setMovieFormDirector(e.target.value)} />
       <input placeholder='year released' required value={movieFormYearReleased} onChange={(e) => setMovieFormYearReleased(e.target.value)} />
       <select required value={movieFormColor} onChange={(e) => setMovieFormColor(e.target.value)} >
+        <option value=''>select a color</option>
         <option value='red'>red</option>
         <option value='yellow'>yellow</option>
         <option value='blue'>blue</option>
