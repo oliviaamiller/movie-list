@@ -14,6 +14,7 @@ export default function App() {
   const [movieFormDirector, setMovieFormDirector] = useState('');
   const [movieFormTitle, setMovieFormTitle] = useState('');
   const [movieFormColor, setMovieFormColor] = useState('');
+  const [textFormColor, setTextFormColor] = useState('');
 
   useEffect(() => {
     const filteredMovies = allMovies.filter(movie => movie.title.includes(filtering));
@@ -29,7 +30,8 @@ export default function App() {
       title: movieFormTitle, 
       director: movieFormDirector, 
       year: movieFormYearReleased,
-      color: movieFormColor
+      color: movieFormColor,
+      text: textFormColor
     };
 
     setAllMovies([...allMovies, movie]);
@@ -60,7 +62,8 @@ export default function App() {
             title: movieFormTitle, 
             director: movieFormDirector, 
             year: movieFormYearReleased,
-            color: movieFormColor
+            color: movieFormColor,
+            text: textFormColor
           }} />
       
         <MovieForm 
@@ -72,7 +75,10 @@ export default function App() {
           movieFormYearReleased={movieFormYearReleased}
           setMovieFormYearReleased={setMovieFormYearReleased}
           movieFormColor={movieFormColor}
-          setMovieFormColor={setMovieFormColor} />
+          setMovieFormColor={setMovieFormColor} 
+          textFormColor={textFormColor} 
+          setTextFormColor={setTextFormColor} />
+
       </div>
 
       <div className='right'>
@@ -82,7 +88,7 @@ export default function App() {
           placeholder='search by title' 
           value={filtering} 
           onChange={(e) => setFiltering(e.target.value)} />
-          
+
         <MovieList 
           movies={filteredMovies.length ? filteredMovies : allMovies}
           handleDeleteMovie={handleDeleteMovie} /> 
