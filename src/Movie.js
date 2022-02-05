@@ -5,9 +5,9 @@ export default function Movie({ movie, handleDeleteMovie }) {
     onClick={() => handleDeleteMovie && handleDeleteMovie(movie.id)}
     className='movie'
     style={{ backgroundColor: movie.color }}>
-    <p>{movie.title}</p>
-    <p>{movie.director}</p>
-    <p>{movie.year}</p>
+    <p style={{ color: movie.text }}>{movie.title}</p>
+    <p style={{ color: movie.text }}>{movie.director}</p>
+    <p style={{ color: movie.text }}>{movie.year}</p>
 
   </div>;
 }
