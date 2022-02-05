@@ -1,27 +1,47 @@
 .App {
   display: flex;
+  flex-direction: column;
+}
+.top {
+  background-color: rgb(235, 231, 232);
+}
+
+.top h2 {
+  margin-left: 2rem;
+  text-transform: lowercase;
+}
+
+.bottom{
+  display: flex;
   flex-direction: row;
 }
 
 .left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
   margin: 0rem 3rem;
 }
 
 .right {
+  margin: 0rem 3rem;
+  width: 80%;
+}
+
+.search {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  width: 80%;
- 
+  align-items: flex-end;
+  align-content: center;
+  margin-top: .5rem;
 }
 
 .App p {
   text-transform: uppercase;
   text-align: center;
   font-weight: bold;
-  color: pink;
+  color: grey;
 }
-
 
 .movie-form {
   display: flex;
@@ -40,6 +60,9 @@
 }
 
 .movie-form button {
+  background-color: white;
+  border: grey 1px solid;
+  margin: .10rem;
 
 }
 
@@ -47,14 +70,15 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  justify-content: flex-end;
 }
 
 .movie {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  border: black 1px solid;
-  margin: .5rem;
+  border: grey 1px solid;
+  margin: .5rem 0rem .5rem .5rem;
   text-align: center;
   height: 9rem;
   width: 7rem;

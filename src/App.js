@@ -40,6 +40,7 @@ export default function App() {
     setMovieFormDirector('');
     setMovieFormYearReleased('');
     setMovieFormColor('');
+    setTextFormColor('');
   }
 
   function handleDeleteMovie(id) {
@@ -55,44 +56,50 @@ export default function App() {
 
   return (
     <div className="App">
-      <div className='left'>
-        <p>Add a Movie</p>
-        <Movie 
-          movie={{
-            title: movieFormTitle, 
-            director: movieFormDirector, 
-            year: movieFormYearReleased,
-            color: movieFormColor,
-            text: textFormColor
-          }} />
+      <section className='top'>
+        <h2>impermanent<br/>movie<br/>database</h2>
+      </section>
       
-        <MovieForm 
-          submitMovie={submitMovie}
-          movieFormTitle={movieFormTitle}
-          setMovieFormTitle={setMovieFormTitle}
-          movieFormDirector={movieFormDirector}
-          setMovieFormDirector={setMovieFormDirector}
-          movieFormYearReleased={movieFormYearReleased}
-          setMovieFormYearReleased={setMovieFormYearReleased}
-          movieFormColor={movieFormColor}
-          setMovieFormColor={setMovieFormColor} 
-          textFormColor={textFormColor} 
-          setTextFormColor={setTextFormColor} />
+      <section className='bottom'>
+        <div className='left'>
+          <Movie 
+            movie={{
+              title: movieFormTitle, 
+              director: movieFormDirector, 
+              year: movieFormYearReleased,
+              color: movieFormColor,
+              text: textFormColor
+            }} />
+      
+          <MovieForm 
+            submitMovie={submitMovie}
+            movieFormTitle={movieFormTitle}
+            setMovieFormTitle={setMovieFormTitle}
+            movieFormDirector={movieFormDirector}
+            setMovieFormDirector={setMovieFormDirector}
+            movieFormYearReleased={movieFormYearReleased}
+            setMovieFormYearReleased={setMovieFormYearReleased}
+            movieFormColor={movieFormColor}
+            setMovieFormColor={setMovieFormColor} 
+            textFormColor={textFormColor} 
+            setTextFormColor={setTextFormColor} />
 
-      </div>
+        </div>
 
-      <div className='right'>
-        <p>Search Movies</p>
+        <div className='right'>
+          <div className='search'>
+        
+            <input 
+              placeholder='search by title' 
+              value={filtering} 
+              onChange={(e) => setFiltering(e.target.value)} />
+          </div>
 
-        <input 
-          placeholder='search by title' 
-          value={filtering} 
-          onChange={(e) => setFiltering(e.target.value)} />
-
-        <MovieList 
-          movies={filteredMovies.length ? filteredMovies : allMovies}
-          handleDeleteMovie={handleDeleteMovie} /> 
-      </div>
+          <MovieList 
+            movies={filteredMovies.length ? filteredMovies : allMovies}
+            handleDeleteMovie={handleDeleteMovie} /> 
+        </div>
+      </section>
       
     
     </div>
